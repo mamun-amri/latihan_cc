@@ -19,10 +19,10 @@
     return $query;
   }
 
-  function tampil_id($id)
+  function edit($username,$nama,$password,$level,$id)
   {
     global $link;
-    $query = mysqli_query($link,"SELECT * FROM users WHERE id='$id'");
+    $query = mysqli_query($link,"UPDATE users SET username='$username',nama='$nama',password='$password',level='$level' WHERE id='$id'");
     return $query;
   }
 

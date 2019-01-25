@@ -3,7 +3,7 @@
   require_once 'core/init.php';
 
   $id = $_GET['id'];
-  $result = tampil_id($id);
+  $result = edit($id);
   $row = mysqli_fetch_assoc($result);
   require_once 'view/header.php';
 
