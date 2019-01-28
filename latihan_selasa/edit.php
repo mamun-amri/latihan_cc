@@ -4,7 +4,7 @@
 
   $id = $_GET['id'];
   $result = edit($id);
-  $row = mysqli_fetch_assoc($result);
+  $row = mysqli_fetch_assoc($result){
   require_once 'view/header.php';
 
  ?>
@@ -25,3 +25,4 @@
       <br><br>
       <input type="submit" name="simpan" value="simpan">
     </form>
+<?php } ?>
