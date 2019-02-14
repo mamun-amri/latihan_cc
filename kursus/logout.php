@@ -1,5 +1,8 @@
 <?php
   session_start();
+  if(!isset($_SESSION['nama'])){
+    header('location:index.php');
+  }
   session_destroy();
-  echo "<script>alert('Good Bye...! <b>$_SESSION[nama]</b>');document.location='index.php';</script>";
+  echo "<script>alert('Good Bye...! $_SESSION[nama]');document.location='index.php';</script>";
  ?>

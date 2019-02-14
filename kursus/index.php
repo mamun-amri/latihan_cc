@@ -1,3 +1,9 @@
+<?php
+session_start();
+if(isset($_SESSION['nama'])){
+  header('location:page.php?content=data_user');
+}
+ ?>
 <h3>Form Login</h3>
 <form action="login.php" method="post">
   <table border="1" width="50%">

@@ -1,5 +1,4 @@
 <?php
-
   session_start();
   require_once 'config.php';
 
@@ -13,7 +12,7 @@
     $_SESSION['username'] = $row['username'];
     $_SESSION['nama']     = $row['nama'];
     $_SESSION['level']    = $row['level'];
-    header('location:home.php');
+    header('location:page.php?content=data_user');
   }else{
     echo "<script>alert('data gagal login');document.location='index.php';</script>";
   }
