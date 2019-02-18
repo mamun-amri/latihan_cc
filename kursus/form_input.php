@@ -1,5 +1,4 @@
 <?php
- 	session_start();
 	if(!isset($_SESSION['nama'])){
 		header('location:index.php');
 	}
@@ -36,7 +35,7 @@
 <body>
 	<form method="post" action="simpan_user.php">
 		<input type="hidden" name="id" value="<?=$id_user?>">
-		 <table class="table table-bordered">
+		 <table class="table ">
 		 	<tr>
 		 		<td>Nama</td>
 		 		<td>:</td>
