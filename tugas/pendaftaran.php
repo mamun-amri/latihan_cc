@@ -3,7 +3,6 @@
 
   if(isset($_REQUEST['edit'])){
     $id = $_REQUEST['edit'];
-
     $query     =mysqli_query($koneksi,"SELECT * FROM pendaftaran WHERE id='$id'");
     while($row =mysqli_fetch_array($query)){
       $id          = $row['id'];
@@ -11,13 +10,16 @@
       $hp          = $row['hp'];
       $jk          = $row['jk'];
       $tgl         = $row['tgl'];
-      $hobi        = $row['hobi'];
       $fakultas    = $row['fakultas'];
       $peminatan   = $row['peminatan'];
       $pesan       = $row['pesan'];
       $tombol      = 'edit';
     }
   }else{
+    $query       = mysqli_fetch_array(mysqli_query($koneksi,"SELECT id AS kd FROM pendaftaran ORDER BY id DESC"));
+    $kd          = substr($query['kd'],5);
+    $kd_baru     = (int) $kd + 1;
+    $id          = 'A'.date('my').sprintf('%04s',$kd_baru);
     $nama        = '';
     $hp          = '';
     $jk          = '';
@@ -25,14 +27,21 @@
     $tombol      = 'daftar';
   }
 ?>
+
 <h1>Formulir Pendaftaran</h1>
 <table class="table">
   <form method="post" action="simpan.php" >
     <tr>
+      <td>Id Pendaftar</td>
+      <td>:</td>
+      <td>
+        <input class="form-control" type="text" name="id" readonly value="<?=$id?>">
+      </td>
+    </tr>
+    <tr>
       <td>Nama</td>
       <td>:</td>
       <td>
-        <input type="hidden" name="id" value="<?=$id?>">
         <input class="form-control" type="text" name="nama" value="<?=$nama?>" placeholder="nama anda..." required>
       </td>
     </tr>
@@ -58,11 +67,11 @@
       <td >Hobi</td>
       <td>:</td>
       <td>
-        <input type="checkbox" name="hobi" value="Membaca"     <?php if(isset($_REQUEST['edit'])){echo ($hobi == 'Membaca')   ? "checked": "";} ?>> Membaca
-        <input type="checkbox" name="hobi" value="Menulis"     <?php if(isset($_REQUEST['edit'])){echo ($hobi == 'Menulis')   ? "checked": "";} ?>> Menulis
-        <input type="checkbox" name="hobi" value="Menyanyi"    <?php if(isset($_REQUEST['edit'])){echo ($hobi == 'Menyanyi')   ? "checked": "";} ?>> Menyanyi
-        <input type="checkbox" name="hobi" value="Berenang"    <?php if(isset($_REQUEST['edit'])){echo ($hobi == 'Berenang')   ? "checked": "";} ?>> Berenang
-        <input type="checkbox" name="hobi" value="Lain-Lainnya"<?php if(isset($_REQUEST['edit'])){echo ($hobi == 'Lain-Lainnya')   ? "checked": "";} ?>> Lain-Lainnya
+        <?php
+        $query       = mysqli_query($koneksi,"SELECT * FROM m_hobi ORDER BY id ASC");
+        while ($row  = mysqli_fetch_array($query)){ ?>
+          <input type="checkbox" name="hobi[]" value="<?= $row['id'] ?>"> <?= $row['hobi'];?>
+        <?php }?>
       </td>
     </tr>
     <tr>

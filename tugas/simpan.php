@@ -1,22 +1,26 @@
-pp<?php
+<?php
 
 include 'config.php';
 
+  $id          = $_POST['id'];
   $nama        = $_POST['nama'];
   $hp          = $_POST['hp'];
   $jk          = $_POST['jk'];
   $tgl         = $_POST['tgl'];
-  $hobi        = $_POST['hobi'];
   $fakultas    = $_POST['fakultas'];
   $peminatan   = $_POST['peminatan'];
   $pesan       = $_POST['pesan'];
 
   if(isset($_REQUEST['daftar'])){
-    $query      = "INSERT INTO pendaftaran (id,nama,hp,jk,hobi,fakultas,peminatan,pesan,tgl)
-                   VALUES ('','$nama','$hp','$jk','$hobi','$fakultas','$peminatan','$pesan','')";
+      for($b=0;$b<count($_POST['hobi']);$b++){
+        $hobis=$_POST['hobi'][$b];
+        mysqli_query($koneksi,"INSERT INTO `hobi` (`id`,`hobi`) VALUES ('$id','$hobis')");
+      }
+    $query      = "INSERT INTO pendaftaran (id,nama,hp,jk,fakultas,peminatan,pesan,tgl)
+                   VALUES ('$id','$nama','$hp','$jk','$fakultas','$peminatan','$pesan','$tgl')";
     $result = mysqli_query($koneksi,$query);
     if($result){
-      header('location:page.php?content=data_anggota');
+      echo "<script>alert('data berhasil disimpan');document.location='page.php?content=data_anggota';</script>";
     }else{
       echo "anda gagal daftar";
     }
@@ -28,16 +32,15 @@ include 'config.php';
                   hp            ='$hp',
                   tgl           ='$tgl',
                   jk            ='$jk',
-                  hobi          ='$hobi',
                   fakultas      ='$fakultas',
                   peminatan     ='$peminatan',
                   pesan         ='$pesan'
                   WHERE id='$id'";
     $result = mysqli_query($koneksi,$query);
     if($result){
-      header('location:page.php?content=data_anggota');
+      echo "<script>alert('data berhasil diedit');document.location='page.php?content=data_anggota';</script>";
     }else{
-      echo "anda gagal daftar";
+      echo "<script>alert('data gagal diedit');document.location='page.php?content=data_anggota';</script>";
     }
   }
 ?>

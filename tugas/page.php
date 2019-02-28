@@ -1,8 +1,9 @@
+
 <?php
-  // session_start();
-  // if(!isset($_SESSION['nama'])){
-  //   header('location:index.php');
-  // }
+  session_start();
+  if(!isset($_SESSION['nama'])){
+    header('location:index.php');
+  }
  ?>
 <!DOCTYPE html>
 <html>
@@ -23,6 +24,8 @@
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+
   <link rel="icon" href="dist/img/icon.png">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -63,13 +66,13 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+              <img src="dist/img/icon.png" class="user-image" alt="User Image">
               <span class="hidden-xs"><?= $_SESSION['nama'] ?> </span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="dist/img/icon.png" class="img-circle" alt="User Image">
 
                 <p>
                   <?= $_SESSION['nama'] ?> - Web Developer
@@ -120,7 +123,7 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          <img src="dist/img/icon.png" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p><?= $_SESSION['nama'] ?></p>
@@ -170,7 +173,7 @@
       <!-- Default box -->
       <div class="box">
         <div class="box-header with-border">
-          <h1 class="box-title">Daftar Anggota Computer Community</h1>
+          <h1 class="box-title">Title</h1>
 
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
@@ -397,7 +400,6 @@
 <!-- ./wrapper -->
 
 <!-- jQuery 3 -->
-<script src="bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- SlimScroll -->

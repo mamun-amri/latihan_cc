@@ -1,4 +1,3 @@
-<script src="colorbox/jquery.min.js" ></script>
 <link rel="stylesheet" href="colorbox/colorbox.css">
 <script src="colorbox/jquery.colorbox.js"></script>
 
@@ -28,13 +27,14 @@
 
   if(isset($_REQUEST['hapus'])){
     $id     = $_REQUEST['hapus'];
+		$query 	= mysqli_query($koneksi,"DELETE FROM hobi WHERE id='$id'");
     $query  = mysqli_query($koneksi,"DELETE FROM pendaftaran WHERE id='$id'");
   }
  ?>
 
-<a href="page.php?content=daftar_anggota" class="btn btn-success">Tambah</a>
+<a href="page.php?content=daftar_anggota"  class="btn btn-success">Tambah</a>
 <br><br>
-<table class="table table-striped table-bordered">
+<table class="table table-hover table-bordered">
   <tr class="info">
     <th>No</th>
     <th>Nama</th>
@@ -56,9 +56,9 @@
     <td><?=$row['fakultas'] ?></td>
     <td><?=$row['peminatan'] ?></td>
     <td>
-      <a href="page.php?content=detail&id=<?=$row['id']?>" onclick="klikdong()"><i class="btn btn-info fa fa-info"></i></a>
+      <a href="detail-anggota.php?id=<?=$row['id']?>"  class="iframe"><i class=" btn btn-info fa fa-info"></i></a>
       <a href="page.php?content=daftar_anggota&edit=<?=$row['id']?>"><i class="btn btn-default fa fa-pencil"></i></a>
-      <a href="page.php?content=data_anggota&hapus=<?=$row['id']?>" onclick="return confirm('apakah benar mau mengahpus')"><i class="btn btn-danger fa fa-trash-o"></i></a>
+      <a href="page.php?content=data_anggota&hapus=<?=$row['id']?>" onclick="return confirm('hapus data <?=$row['nama']?>')"><i class="btn btn-danger fa fa-trash-o"></i></a>
     </td>
   </tr>
   <?php } ?>

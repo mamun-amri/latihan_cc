@@ -12,17 +12,23 @@
 
 		$r = mysqli_fetch_array($hasil);
 
-		$id_user = $r['id'];
-		$username = $r['username'];
-		$nama = $r['nama'];
-		$level = $r['level'];
-		$password =$r['password'];
-		$button = "edit";
-		}else{
-		$id_user = "";
+		$id_user 		= $r['id'];
+		$username 	= $r['username'];
+		$nama 			= $r['nama'];
+		$level 			= $r['level'];
+		$password 	=$r['password'];
+		$button 		= "edit";
+	}else{
+		// membuat penomoran otomatis
+		$query 	 	= mysqli_query($koneksi,"SELECT id AS kd FROM users ORDER BY id DESC");
+		$id 			= mysqli_fetch_array($query);
+		$kd				= substr($id['kd'],1,4);
+		$kd_baru  = (int)$kd + 1;
+		$id_user 	= 'M'.date("my").sprintf('%04s',$kd_baru);
+
 		$username = "";
-		$nama = "";
-		$button = "simpan";
+		$nama			= "";
+		$button		= "simpan";
 	}
 
 ?>
@@ -34,8 +40,12 @@
 </head>
 <body>
 	<form method="post" action="simpan_user.php">
-		<input type="hidden" name="id" value="<?=$id_user?>">
 		 <table class="table ">
+			<tr>
+			 	<td>Id User</td>
+				<td>:</td>
+				<td><input type="text" name="id" class="form-control" readonly value="<?=$id_user?>"></td>
+			</tr>
 		 	<tr>
 		 		<td>Nama</td>
 		 		<td>:</td>
