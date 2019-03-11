@@ -16,13 +16,19 @@
     font-family :sans-serif;
   }
 </style>
+<table class="table table-hover">
+  <tr>
+    <td valign="middle center"><img src="dist/img/icon.png" width="100px" height="100px" alt="cc"></td>
+    <td valign="middle center"><h1 class="text-center">Detail Anggota Computer Community</h1></td>
+    <td valign="middle center"><img src="dist/img/cc.png" width="100px" height="100px"  alt="cc"></td>
+  </tr>
 <?php include 'config.php'; ?>
     <?php
       $id=$_REQUEST['id'];
       $query =mysqli_query($koneksi,"SELECT * FROM pendaftaran WHERE id='$id'");
       while($row = mysqli_fetch_array($query)){
      ?>
-    <h1 class="text-center">Detail Anggota Computer Community</h1>
+    </table>
     <table class="table table-hover">
       <tr>
         <th width="200px">Id Pendaftar </th>
@@ -47,16 +53,26 @@
       <tr>
         <th>Alumni </th>
         <td>:</td>
-        <td><?=$row['tgl'] ?></td>
+        <td>
+          <?php
+          $date = date_create($row['tgl']);
+          echo date_format($date,'d / M / Y');
+          ?>
+       </td>
       </tr>
       <tr>
         <th>Hobi </th>
         <td>:</td>
         <?php
-        $query     = mysqli_query($koneksi,"SELECT * FROM hobi WHERE id='$id'");
-        while ($r  = mysqli_fetch_array($query)){ ?>
-        <td ><?= ucfirst($r['hobi']) ?></td>
-        <?php } ?>
+        $select     = mysqli_query($koneksi,"SELECT hobi.id, hobi.hobi, m_hobi.id,m_hobi.hobi
+                     FROM m_hobi,hobi WHERE hobi.id='$id' AND hobi.hobi=m_hobi.id");?>
+        <td >
+        <?php
+          while($r = mysqli_fetch_array($select)){ $data[] = $r['hobi']; }
+          $imp     = implode(', ',$data);
+          echo ucfirst($imp);
+         ?>
+        </td>
       </tr>
       <tr>
         <th>Fakultas </th>
@@ -71,12 +87,7 @@
       <tr>
         <th>Pesan </th>
         <td>:</td>
-        <td><?=$row['pesan'] ?></td>
+        <td> <textarea class="form-control" rows="8" cols="80" readonly> <?=$row['pesan'] ?> </textarea> </td>
       </tr>
-      <!-- <tr>
-        <td>
-          <a href="page.php?content=data_anggota" class="btn btn-danger">kembali</a>
-        </td>
-      </tr> -->
     </table>
   <?php } ?>

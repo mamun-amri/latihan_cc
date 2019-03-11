@@ -23,9 +23,14 @@ include 'config.php';
       echo "<script>alert('data berhasil disimpan');document.location='page.php?content=data_anggota';</script>";
     }else{
       echo "anda gagal daftar";
-    }
+    }sudo 
   }else{
     $id         =$_REQUEST['id'];
+    mysqli_query($koneksi,"DELETE FROM `hobi` WHERE id='$id'");
+    for($b=0;$b<count($_POST['hobi']);$b++){
+      $hobis=$_POST['hobi'][$b];
+      mysqli_query($koneksi,"INSERT INTO `hobi` (`id`,`hobi`) VALUES ('$id','$hobis')");
+    }
     $query      = "UPDATE pendaftaran SET
                   id            ='$id',
                   nama          ='$nama',

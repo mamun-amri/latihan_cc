@@ -68,15 +68,18 @@
       <td>:</td>
       <td>
         <?php
-        $query       = mysqli_query($koneksi,"SELECT * FROM m_hobi ORDER BY id ASC");
-        while ($row  = mysqli_fetch_array($query)){ ?>
-          <input type="checkbox" name="hobi[]" value="<?= $row['id'] ?>"> <?= $row['hobi'];?>
-        <?php }?>
+        $query       = mysqli_query($koneksi,"SELECT * FROM m_hobi ");
+        while ($row  = mysqli_fetch_array($query)){
+          $hobi   = $row['id'];
+          $edit   = mysqli_query($koneksi,"SELECT * FROM hobi WHERE id='$id' AND hobi='$hobi'");
+          $result = mysqli_num_rows($edit);?>
+          <input type="checkbox" name="hobi[]" value="<?=$row['id']?>"<?php if($result >= 1){ echo "checked" ; } ?>> <?= $row['hobi'];?>
+      <?php }?>
       </td>
     </tr>
     <tr>
       <td >Fakultas</td>
-      <td>:</td>
+      <td>:</td>iha
       <td>
         <select class="form-control" name="fakultas">
           <option <?php if(isset($_REQUEST['edit'])){echo ($fakultas == 'Ilmu Komputer') ? "selected": "";} ?>> Ilmu Komputer </option>
@@ -99,7 +102,7 @@
       </td>
     </tr>
     <tr>
-      <td >Pesan</td>
+      <td>Pesan</td>
       <td>:</td>
       <td><textarea class="form-control" name="pesan" cols="50" rows="10"> <?=$pesan?></textarea></td>
     </tr>
