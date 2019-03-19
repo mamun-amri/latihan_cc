@@ -5,4 +5,4 @@
   }
   session_destroy();
   echo "<script>alert('Good Bye...! $_SESSION[nama]');document.location='index.php';</script>";
- ?>
+?>
