@@ -40,8 +40,7 @@ if(!isset($_SESSION['nama'])){
 		 		</td>
 		 	</tr>
 		 	";
-
 		 	$no++;
-		 }
+		}
 	?>
 </table>

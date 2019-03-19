@@ -16,7 +16,7 @@
 		$username 	= $r['username'];
 		$nama 			= $r['nama'];
 		$level 			= $r['level'];
-		$password 	=$r['password'];
+		$password 	= $r['password'];
 		$button 		= "edit";
 	}else{
 		// membuat penomoran otomatis
