@@ -27,5 +27,6 @@ if(!isset($_SESSION['nama'])){
   <ul class="treeview-menu">
     <li><a href="lapusers.php" target="_blank"><i class="fa fa-circle-o"></i> Users </a></li>
     <li><a href="index2.html"><i class="fa fa-circle-o"></i> Anggota </a></li>
+    <li><a href="conlap.php" target="_blank"><i class="fa fa-circle-o"></i> contoh </a></li>
   </ul>
 </li>
